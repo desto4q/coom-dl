@@ -12,16 +12,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            clang cmake ninja-build pkg-config \
+            libgtk-3-dev liblzma-dev
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-          flutter-version: "3.24.0" # or the version you use locally
+          flutter-version: "3.24.0" # your local version
 
       - name: Enable Linux desktop
         run: flutter config --enable-linux-desktop
 
-      - name: Install dependencies
+      - name: Install Dart & Flutter packages
         run: flutter pub get
 
       - name: Build Linux release
