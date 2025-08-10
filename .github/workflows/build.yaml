@@ -30,6 +30,9 @@ jobs:
       - name: Install Dart & Flutter packages
         run: flutter pub get
 
+      - name: Upgrade win32 & archive to Dart 3.5 compatible versions
+        run: flutter pub upgrade win32 archive
+
       - name: Build Linux release
         run: flutter build linux --release
 
